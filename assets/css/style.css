@@ -1,0 +1,84 @@
+  #navbar{
+    margin: 0;
+  }
+  #email-login {
+    border-radius: 0.6rem;
+  }
+  #password-login {
+    border-radius: 0.6rem;
+  }
+  #btn-login{
+    border-radius: 0.4rem;
+  }
+  a {
+    text-decoration:none !important;
+  }
+  .title-login {
+    text-align: center;
+  }
+  #register-page {
+    margin-top: 200vh; 
+  }
+  .title-register {
+    text-align: center;
+  }
+  h1,h2,h3{
+    font-family: 'Kaushan Script', cursive;
+    /* color: white; */
+  }
+  .myform{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex !important;
+    padding: 1rem;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 1.1rem;
+    outline: 0;
+    max-width: 500px;
+  }
+  .tx-tfm{
+    text-transform:uppercase;
+  }
+  .mybtn{
+    border-radius:50px;
+  }
+  .login-or {
+    position: relative;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .google {
+    color:#666;
+    width:100%;
+    height:40px;
+    text-align:center;
+    outline:none;
+    border: 1px solid lightgrey;
+  }
+  .google:hover {
+    color: rgba(25, 5, 199, 0.994)
+  }
