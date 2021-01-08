@@ -5,7 +5,7 @@ function showMainPage() {
   $('#login-page').hide()
   $('#register-page').hide()
   $('#list-animals').show()
-  // $('#btn-logout').show()
+  fecthCat()
 }
 function showLoginPage() {
   $('#navbar').hide()
@@ -48,6 +48,10 @@ function register () {
       })
         console.log(xhr)
     })
+    .always(xhr => {
+      $('#email-regis').val('')
+      $('#password-regis').val('')
+    })
 
 }
 
@@ -79,6 +83,10 @@ function login () {
         text: `${xhr.responseJSON.message}`,
       })
     })
+    .always(xhr => {
+      $('#email-login').val('')
+      $('#password-login').val('')
+    })
 }
 
 function logout(){ 
@@ -89,5 +97,85 @@ function logout(){
     showConfirmButton: false,
     timer: 1500
   })
+  var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
   showLoginPage()
 }
+function fecthCat(imageCat){
+  $.ajax({
+    method: 'get',
+    url: url + '/cats',
+    headers: {
+      access_token: localStorage.access_token
+    }
+  })
+    .done(response => {
+      console.log(response)
+      response.forEach(el => {
+        $('#list-cat').append(`
+          <div class="col-3 mb-5 mt-3" id="body-modal">
+            <img src="${el.url}" style="width: 100%; heigth: 15vw; object-fit: cover;" class="card-img-top" alt="cat.cute.png" id="cat-image">
+          </div>
+        `)
+      })
+      $('#title-modal').prepend(`
+          <h5 class="modal-title" id="staticBackdropLabel">Image Cat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  
+        `)
+        $('#dog-modal').prepend(`
+            <img src="${imageCat}" alt="fox.png" class="w-100">
+        `)
+    })
+    .fail(xhr => {
+      console.log(xhr)
+    })
+} 
+function fecthDog(){
+  $.ajax({
+    method: 'get',
+    url: url + '/dogs',
+    headers: {
+      access_token: localStorage.access_token
+    }
+  })
+    .done(response => {
+      console.log(response)
+        $('#title-modal').prepend(`
+          <h5 class="modal-title" id="staticBackdropLabel">Image Dog</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        `)
+        $('#dog-modal').append(`
+            <img src="${response.url}" alt="fox.png" class="w-100">
+        `)
+    })
+    .fail(xhr => {
+      console.log(xhr)
+    })
+} 
+function fecthFox(){
+  $.ajax({
+    method: 'get',
+    url: url + '/fox',
+    headers: {
+      access_token: localStorage.access_token
+    }
+  })
+    .done(response => {
+      console.log(response.image, " <<<< fox boss")
+      $('#title-modal').prepend(`
+        <h5 class="modal-title" id="staticBackdropLabel">Image Fox</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      `)
+        $('#dog-modal').append(`
+          <img src="${response.image}" alt="fox.png" class="w-100">
+        `)
+    })
+    .fail(xhr => {
+      console.log(xhr)
+    })
+} 

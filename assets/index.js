@@ -17,4 +17,15 @@ $(document).ready(function () {
         event.preventDefault()
         logout()
     })
+    $('#list-animals').each(function () {
+        // var $this = $(this);
+        $('#list-cat').on("click", "#body-modal",function (event) {
+            fecthCat(event.target.currentSrc)
+        });
+    });
+    $('#staticBackdrop').on('hidden.bs.modal', function() {
+        console.log('close', '<<<<<,')
+        $('#dog-modal').empty()
+        $('#title-modal').empty()
+    })
 })
