@@ -103,6 +103,7 @@ function logout(){
     });
   showLoginPage()
 }
+
 function fecthCat(imageCat){
   $.ajax({
     method: 'get',
@@ -178,4 +179,25 @@ function fecthFox(){
     .fail(xhr => {
       console.log(xhr)
     })
-} 
+}
+
+function onSignIn(googleUser) {
+  var googleToken = googleUser.getAuthResponse().id_token;
+  
+  $.ajax({
+      url: 'http://localhost:3000/googleLogin',
+      method: 'POST',
+      data: {
+          googleToken
+      }
+  })
+  .done(response => {
+      console.log(response)
+      localStorage.setItem('access_token', response.access_token)
+      showMainPage()
+  })
+  .fail((xhr, textStatus) => {
+      console.log(xhr, textStatus)
+  })
+}
+
